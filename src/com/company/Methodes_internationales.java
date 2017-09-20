@@ -1,3 +1,5 @@
+package com.company;
+
 public class Methodes_internationales {
     private  int charg_trav;
     private double taux_max;
