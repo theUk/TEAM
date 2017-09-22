@@ -45,7 +45,13 @@ public class Methodes_regional {
         return tab_reg[0]+tab_reg[1]+tab_reg[2];
     }
 
+    public double rente_provenciale(double valeur_totale){
+        return Math.round(((valeur_totale+9733.70)*7.2)/100);
+    }
 
+    public double rente_federale(double valeur_fonciere){
+        return Math.round(((valeur_fonciere+9733.70)*12.5)/100) ;
+    }
 }
 
 

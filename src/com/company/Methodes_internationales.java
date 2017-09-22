@@ -1,5 +1,6 @@
 package com.company;
 
+
 public class Methodes_internationales {
     private  int charg_trav;
     private double taux_max;
@@ -7,6 +8,10 @@ public class Methodes_internationales {
     private int nbr_dr_anc;
     private int nbr_diplome;
     private double[] tab_inter= new double[3];
+
+    public Methodes_internationales(){
+
+    }
 
     public Methodes_internationales(int charg_trav, double taux_max, double val_sal, int nbr_dr_anc){
         this.charg_trav=charg_trav;
@@ -46,4 +51,15 @@ public class Methodes_internationales {
     }
 
 
+    public double val_tot(){
+        return tab_inter[0]+tab_inter[1]+tab_inter[2];
+    }
+
+    public double rente_provenciale(double valeur_totale){
+        return Math.round(((valeur_totale+9733.70)*7.2)/100);
+    }
+
+    public double rente_federale(double valeur_fonciere){
+        return Math.round(((valeur_fonciere+9733.70)*12.5)/100) ;
+    }
 }

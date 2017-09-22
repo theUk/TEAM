@@ -2,10 +2,10 @@ package com.company;
 
 public class Methodes_national {
 
-    int charg_trav;
-    double taux_min;
-    double val_sal;
-    int nbr_dr_anc;
+    private int charg_trav;
+    private double taux_min;
+    private double val_sal;
+    private int nbr_dr_anc;
     private double[] tab_nat= new double[2];
 
     public Methodes_national(int charg_trav, double taux_min, double val_sal, int nbr_dr_anc){
@@ -32,6 +32,16 @@ public class Methodes_national {
         return 0.00;
     }
 
+    public double val_tot(){
+        return tab_nat[0]+tab_nat[1];
+    }
 
+    public double rente_provenciale(double valeur_totale){
+        return Math.round(((valeur_totale+9733.70)*7.2)/100);
+    }
+
+    public double rente_federale(double valeur_fonciere){
+        return Math.round(((valeur_fonciere+9733.70)*12.5)/100) ;
+    }
 
 }
