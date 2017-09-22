@@ -49,90 +49,13 @@ public class Main {
                 departement = new Departement();
 
                {
-                   JSONObject jsonObject =  JSONObject.fromObject(jsonTxt);
-                   departement.setNom_departement(jsonObject.getString("nom_departement"));
-
-                   String taux_horaire_min = jsonObject.getString("taux_horaire_min").replaceAll(" ", "");
-                   taux_horaire_min = taux_horaire_min.replace('$',' ').trim();
-                   departement.setTaux_horaire_min(Double.parseDouble(taux_horaire_min));
-
-
-                   String taux_horaire_max = jsonObject.getString("taux_horaire_max").replaceAll(" ", "");
-                   taux_horaire_max = taux_horaire_max.replace('$',' ').trim();
-                   departement.setTaux_horaire_max(Double.parseDouble(taux_horaire_max));
-
-                   JSONArray employesJson = jsonObject.getJSONArray("employes") ;
-                   ArrayList<Employe> employeArrayList = new ArrayList<Employe>();
-                   Employe employe = new Employe();
-                   for (int z= 0 ; i < employesJson.size() ; i ++ ){
-                       employe.setType_departement(jsonObject.getInt("type_departement"));
-                       employe.setNom(employesJson.getJSONObject(i).getString("nom"));
-                       employe.setNombre_droit_ancienne(employesJson.getJSONObject(i).getInt("nombre_droit_anciennete"));
-                       employe.setNombre_diplomes(employesJson.getJSONObject(i).getInt("nombre_diplomes"));
-                       employe.setCharge_travail(employesJson.getJSONObject(i).getInt("charge_travail"));
-
-                       if (employe.getType_departement() == 0 ){
-
-                           departement.getEmployesNationnal().add(new Employe(employe));
-
-                       }else if (employe.getType_departement()== 1 ){
-
-                           departement.getEmployesRegionnal().add(new Employe(employe));
-
-
-                       }else if (employe.getType_departement()== 2 ){
-
-                           departement.getEmployesInternationnal().add(new Employe(employe));
-                       }
-
-                   }
+                   setDepartement(jsonTxt , departement , departementArrayList);
                }
-               departementArrayList.add(departement);
+
            }
 
        }else if (jsonTxt.toString().charAt(0) == '{' ) {
-
            setDepartement(jsonTxt , departement , departementArrayList);
-/*
-           JSONObject jsonObject =  JSONObject.fromObject(jsonTxt);
-
-             departement.setNom_departement(jsonObject.getString("nom_departement"));
-
-             String taux_horaire_min = jsonObject.getString("taux_horaire_min").replaceAll(" ", "");
-             taux_horaire_min = taux_horaire_min.replace('$',' ').trim();
-             departement.setTaux_horaire_min(Double.parseDouble(taux_horaire_min));
-
-
-             String taux_horaire_max = jsonObject.getString("taux_horaire_max").replaceAll(" ", "");
-             taux_horaire_max = taux_horaire_max.replace('$',' ').trim();
-             departement.setTaux_horaire_max(Double.parseDouble(taux_horaire_max));
-
-             JSONArray employesJson = jsonObject.getJSONArray("employes") ;
-             ArrayList<Employe> employeArrayList = new ArrayList<Employe>();
-             Employe employe = new Employe();
-                        for (int i= 0 ; i < employesJson.size() ; i ++ ){
-                                employe.setType_departement(jsonObject.getInt("type_departement"));
-                                employe.setNom(employesJson.getJSONObject(i).getString("nom"));
-                                employe.setNombre_droit_ancienne(employesJson.getJSONObject(i).getInt("nombre_droit_anciennete"));
-                                employe.setNombre_diplomes(employesJson.getJSONObject(i).getInt("nombre_diplomes"));
-                                employe.setCharge_travail(employesJson.getJSONObject(i).getInt("charge_travail"));
-
-                                if (employe.getType_departement() == 0 ){
-
-                                    departement.getEmployesNationnal().add(new Employe(employe));
-
-                                }else if (employe.getType_departement()== 1 ){
-
-                                    departement.getEmployesRegionnal().add(new Employe(employe));
-
-
-                                }else if (employe.getType_departement()== 2 ){
-
-                                    departement.getEmployesInternationnal().add(new Employe(employe));
-                                }
-                        }
-           departementArrayList.add(departement);
-*/
        }
     }
 
