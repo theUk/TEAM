@@ -91,6 +91,7 @@ public class Main {
            }
 
        }else if (jsonTxt.toString().charAt(0) == '{' ) {
+
            JSONObject jsonObject =  JSONObject.fromObject(jsonTxt);
 
              departement.setNom_departement(jsonObject.getString("nom_departement"));
