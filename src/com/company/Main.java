@@ -24,7 +24,7 @@ public class Main {
         ArrayList<Departement> departementArrayList= new ArrayList<Departement>();
 
 
-
+       // MO
         InputStream is = null;
             try {
                 is = new FileInputStream(args[0]);
