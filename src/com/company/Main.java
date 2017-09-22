@@ -3,10 +3,8 @@ package com.company;
 //import net.sf.json.JSONObject;
 
 
-import jdk.nashorn.internal.parser.JSONParser;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
 import org.apache.commons.io.IOUtils;
 
 import java.io.*;
@@ -57,6 +55,63 @@ public class Main {
        }else if (jsonTxt.toString().charAt(0) == '{' ) {
            setDepartement(jsonTxt , departement , departementArrayList);
        }
+
+
+
+       ///Bertrant
+
+        JSONObject departement2=new JSONObject();
+
+
+        double val=Methodes_internationales.val_tot();
+        double rentepro=Methodes_internationales.rente_provenciale(val);
+        double rentefed=Methodes_internationales.rente_federale(val);
+        departement2.accumulate("valeur_totale",val+" %" );
+        departement2.accumulate("rente_provenciale",rentepro+" %" );
+        departement2.accumulate("rente_federale",rentefed+" %" );
+
+        JSONArray tableauEmploye=new JSONArray();
+        JSONObject emplye=new JSONObject();
+
+
+
+        emplye.accumulate("nom", "Zied Zaier" );
+        emplye.accumulate("valeur_par_employe","");
+        tableauEmploye.add(emplye);
+        emplye.clear();
+
+        emplye.accumulate("nom", "Jean Dupon" );
+        emplye.accumulate("valeur_par_employe","");
+        tableauEmploye.add(emplye);
+        emplye.clear();
+
+        emplye.accumulate("nom", "Rose Pascal" );
+        emplye.accumulate("valeur_par_employe","");
+        tableauEmploye.add(emplye);
+
+        departement2.accumulate("salaire", tableauEmploye);
+
+        System.out.println(departement2);
+
+
+        //Mozart ajoute
+
+
+
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("sample.json");   // CHANGER POUR ARGS
+            // Writting the departement2 into sample.json
+            fileWriter.write(departement2.toString());
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
     }
 
 
@@ -104,5 +159,11 @@ public class Main {
 
 
     }
+
+
+
+
+
+
 
 }
