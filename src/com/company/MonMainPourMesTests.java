@@ -3,6 +3,9 @@ package com.company;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class MonMainPourMesTests {
     public static void main(String[] args) {
         Methodes_internationales methodes_internationales=new Methodes_internationales();
@@ -36,9 +39,24 @@ public class MonMainPourMesTests {
 
         jsonObject.accumulate("salaire", tableauEmploye);
 
-
-
         System.out.println(jsonObject);
+
+
+        //Mozart ajoute
+
+
+
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter("sample.json");
+            // Writting the jsonObject into sample.json
+            fileWriter.write(jsonObject.toString());
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
 
 
     }
